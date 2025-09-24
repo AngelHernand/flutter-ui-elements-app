@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'screens/text_fields_screen.dart';
+import 'package:flutter_application_1/screens/multi_screen_activity.dart';
+
 import 'screens/buttons_screen.dart';
-import 'screens/selection_elements_screen.dart';
-import 'screens/lists_screen.dart';
 import 'screens/info_elements_screen.dart';
+import 'screens/lists_screen.dart';
+import 'screens/selection_elements_screen.dart';
+import 'screens/text_fields_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,6 +65,17 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(_titles[_selectedIndex]),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MultiScreenActivity()),
+              );
+            },
+            child: Text('Ir a MultiScreen Activity'),
+          ),
+        ],
         elevation: 2,
       ),
       body: _screens[_selectedIndex],
@@ -81,14 +94,8 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.check_box),
             label: 'Selección',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Listas',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Información',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Listas'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Información'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).colorScheme.primary,
